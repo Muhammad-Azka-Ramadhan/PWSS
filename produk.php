@@ -67,7 +67,8 @@
             ?>
           </td>
           <td>
-            <a href="delete_produk.php"<?=$data['id']?> onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
+            <a href="delete_produk.php?id<?=$data['id']?> "onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
+            <a href="delete_produk.php?id<?=$data['id']?> "onclick="return confirm('Yakin hapus data ini?')">Edit</a>
           </td>
         </tr>
         <?php

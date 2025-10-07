@@ -19,6 +19,7 @@
                     <select name="kategori" id="">
                         <option value="makanan">Makanan</option>
                         <option value="minuman">Minuman</option>
+                        <option value="elektronik">Elektronik</option>
                     </select>
                 </td>
             </tr>
