@@ -8,7 +8,7 @@
 
 <body>
     <?php
-    if(isset($GET['id']) == false){
+    if(isset($_GET['id']) == false){
         echo "<script>window.location.href='produk.php'</script>";
     }
     include "koneksi.php";
@@ -27,19 +27,19 @@
         $size_gambar = $gambar['size'];
         $target_file = 'image/'.$nama_gambar;
 
-        if(is_uploaded_file($gambar['tmp_name'])){
-            $sql = "UPDATE produk SET Nama = '$nama',kategori = '$kategori',deskripsi = '$deskripsi',jumlah = '$jumlah',harga = '$harga',gambar = '$nama_gambar' WHERE id = '$id'";
+        if(is_uploaded_file($gambar['tmp_name'])==FALSE){
+            $sql = "UPDATE produk SET Nama = '$nama',kategori = '$kategori',deskripsi = '$deskripsi',jumlah = '$jumlah',harga = '$harga' WHERE id=$id";
             $query = mysqli_query($koneksi, $sql);
             if($query){
-                echo"<script>window.loaction.href='produk.php';</script>";
+                echo"<script>window.location.href='produk.php';</script>";
             }
         }else{
-            if($size_gambar >3000000){
+            if($size_gambar < 3000000){
                 if(move_uploaded_file($gambar['tmp_name'], $target_file)){
                     $sql = "UPDATE produk SET Nama = '$nama',kategori = '$kategori',deskripsi = '$deskripsi',jumlah = '$jumlah',harga = '$harga',gambar = '$nama_gambar' WHERE id = '$id'";
                     $query = mysqli_query($koneksi, $sql);
                     if($query){
-                        echo"<script>window.loaction.href='produk.php';</script>";
+                        echo"<script>window.location.href='produk.php';</script>";
                     }
                 } else {
                     "Data gagal disimpan dikarenakan gambar gagal diupload";
@@ -60,34 +60,34 @@
         <table>
             <tr>
                 <td>Nama Produk</td>
-                <td><input type="text" name="nama" id="" value="<?= $data['nama']?>"></td>
+                <td><input type="text" name="nama" id="" value="<?= $data['Nama']?>"></td>
             </tr>
             <tr>
                 <td>Kategori</td>
                 <td>
                     <select name="kategori" id="">
-                        <option value="makanan" <?$data['kategori'] == 'makanan' ? 'selected' : ''?>>Makanan</option>
-                        <option value="minuman" <?$data['kategori'] == 'minuman' ? 'selected' : ''?>>Minuman</option>
-                        <option value="elektronik" <?$data['kategori'] == 'elektronik' ? 'selected' : ''?>>Elektronik</option>
+                        <option value="makanan" <?=$data['kategori'] == 'makanan' ? 'selected' : ''?>>Makanan</option>
+                        <option value="minuman" <?=$data['kategori'] == 'minuman' ? 'selected' : ''?>>Minuman</option>
+                        <option value="elektronik" <?=$data['kategori'] == 'elektronik' ? 'selected' : ''?>>Elektronik</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>Deskripsi</td>
                 <td>
-                    <textarea name="deskripsi" id=""><?$data['deskripsi']?></textarea>
+                    <textarea name="deskripsi" id=""><?=$data['deskripsi']?></textarea>
                 </td>
             </tr>
             <tr>
                 <td>Jumlah</td>
                 <td>
-                    <input type="number" name="jumlah" id="" <?$data['jumlah']?>>
+                    <input type="number" name="jumlah" id="" value="<?=$data['jumlah']?>">
                 </td>
             </tr>
             <tr>
                 <td>Harga</td>
                 <td>
-                    <input type="number" name="harga" id="" <?$data['harga']?>>
+                    <input type="number" name="harga" id="" value="<?=$data['harga']?>">
                 </td>
             </tr>
             <tr>
@@ -96,7 +96,7 @@
                     <?php
                     if($data ['gambar'] !=""){
                     ?>
-                    <img src="<?= 'image/'.$data['gambar']?>" alt="" width="100px">
+                        <img src="image/<?= $data['gambar']?>" alt="" width="100px">
                     <?php
                     } else {
                         echo "Gambar tidak tersedia";

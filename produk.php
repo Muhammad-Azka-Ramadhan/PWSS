@@ -20,7 +20,7 @@
         <input type="submit" value="Cari">
     </form>
     <br>
-    <a href="create-produk.php">
+    <a href="create_produk.php">
         <button>Tambah Data Produk</button>
     </a>
     <br>
@@ -67,8 +67,8 @@
             ?>
           </td>
           <td>
-            <a href="delete_produk.php?id<?=$data['id']?> "onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
-            <a href="delete_produk.php?id<?=$data['id']?> "onclick="return confirm('Yakin hapus data ini?')">Edit</a>
+            <a href="delete_produk.php?id=<?=$data['id']?> "onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
+            <a href="edit_produk.php?id=<?=$data['id']?>">Edit</a>
           </td>
         </tr>
         <?php
