@@ -46,7 +46,7 @@ session_start();
             $data = mysqli_fetch_array($query);
             $_SESSION['username'] = $data['username'];
             $_SESSION['name'] = $data['nama'];
-            header("Location:produk.php");
+            header("Location:index.php?page=produk");
         }else{
             echo "Login anda gagal";
         }

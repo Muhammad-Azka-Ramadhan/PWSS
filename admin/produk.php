@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['username'])){
-    header("location:login.php");
+    header("location:index.php");
   }
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ if(!isset($_SESSION['username'])){
         <input type="submit" value="Cari">
     </form>
     <br>
-    <a href="create_produk.php">
+    <a href="index.php?page=create_produk">
         <button>Tambah Data Produk</button>
     </a>
     <br>
